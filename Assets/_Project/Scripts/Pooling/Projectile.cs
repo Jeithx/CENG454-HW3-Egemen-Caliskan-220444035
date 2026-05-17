@@ -17,6 +17,12 @@ namespace CoreBreach.Pooling
 
         public int Damage => damage;
         public System.Action<Projectile> ReturnAction;
+        public bool Piercing = false;
+
+        public void SetDamage(int newDamage)
+        {
+            damage = newDamage;
+        }
 
         private void Awake()
         {
@@ -36,6 +42,7 @@ namespace CoreBreach.Pooling
             isActiveProjectile = false;
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+            Piercing = false;
         }
 
         public void OnDespawn()
@@ -44,6 +51,7 @@ namespace CoreBreach.Pooling
             rb.angularVelocity = Vector3.zero;
             isActiveProjectile = false;
             ReturnAction = null;
+            Piercing = false;
         }
 
         private void Update()
@@ -68,7 +76,7 @@ namespace CoreBreach.Pooling
                 dmg.TakeDamage(damage);
             }
 
-            ReturnToPool();
+            if (!Piercing) ReturnToPool();
         }
 
         private void ReturnToPool()
