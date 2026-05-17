@@ -1,0 +1,33 @@
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+
+# Project files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+
+# IDEs
+.vs/
+.vscode/
+.idea/
+
+# Builds
+*.apk
+*.aab
+*.unitypackage
+
+# Other
+crashlytics-build.properties
