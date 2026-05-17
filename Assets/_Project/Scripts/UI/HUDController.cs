@@ -10,12 +10,14 @@ namespace CoreBreach.UI
         [SerializeField] private TMP_Text coreHealthText;
         [SerializeField] private TMP_Text gameStateText;
         [SerializeField] private Slider coreHealthBar;
+        [SerializeField] private TMP_Text weaponChainText;
 
         private void OnEnable()
         {
             GameEvents.OnCoreDamaged += HandleCoreDamaged;
             GameEvents.OnGameOver += HandleGameOver;
             GameEvents.OnGameWon += HandleGameWon;
+            GameEvents.OnWeaponChainChanged += HandleWeaponChainChanged;
         }
 
         private void OnDisable()
@@ -23,6 +25,7 @@ namespace CoreBreach.UI
             GameEvents.OnCoreDamaged -= HandleCoreDamaged;
             GameEvents.OnGameOver -= HandleGameOver;
             GameEvents.OnGameWon -= HandleGameWon;
+            GameEvents.OnWeaponChainChanged -= HandleWeaponChainChanged;
         }
 
         private void Start()
@@ -30,6 +33,11 @@ namespace CoreBreach.UI
             if (gameStateText != null)
             {
                 gameStateText.text = "";
+            }
+
+            if (weaponChainText != null)
+            {
+                weaponChainText.text = "Weapon: Base";
             }
         }
 
@@ -60,6 +68,14 @@ namespace CoreBreach.UI
             if (gameStateText != null)
             {
                 gameStateText.text = "VICTORY";
+            }
+        }
+
+        private void HandleWeaponChainChanged(string description)
+        {
+            if (weaponChainText != null)
+            {
+                weaponChainText.text = "Weapon: " + description;
             }
         }
     }

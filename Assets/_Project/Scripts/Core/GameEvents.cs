@@ -10,6 +10,7 @@ namespace CoreBreach.Core
         public static event Action<int> OnWaveCleared;
         public static event Action OnGameOver;
         public static event Action OnGameWon;
+        public static event Action<string> OnWeaponChainChanged;
 
         public static void RaiseCoreDamaged(int currentHealth, int maxHealth)
         {
@@ -39,6 +40,11 @@ namespace CoreBreach.Core
         public static void RaiseGameWon()
         {
             OnGameWon?.Invoke();
+        }
+
+        public static void RaiseWeaponChainChanged(string description)
+        {
+            OnWeaponChainChanged?.Invoke(description);
         }
     }
 }
